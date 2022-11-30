@@ -38,6 +38,7 @@
         <spring.cloud.version>Hoxton.SR1</spring.cloud.version>
         <spring.cloud.alibaba.version>2.2.0.RELEASE</spring.cloud.alibaba.version>
 
+
         <mybatsi.spring.boot.version>1.3.2</mybatsi.spring.boot.version>
     </properties>
 
