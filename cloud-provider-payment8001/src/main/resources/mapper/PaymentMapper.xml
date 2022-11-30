@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.atguigu.springcloud.dao.PaymentDao">
+    <!--
+        useGeneratedKeys=“true”     keyProperty=“id”
+        useGeneratedKeys设置为 true 时，表示如果插入的表id以自增列为主键，则允许 JDBC 支持自动生成主键，并可将自动生成的主键id返回。
+        useGeneratedKeys参数只针对 insert 语句生效，默认为 false；
+    -->
+    <insert id="add" parameterType="Payment" useGeneratedKeys="true" keyProperty="id">
+        insert into payment(serial) values(#{serial})
+    </insert>
+    <!--
+        parameterType
+
+        该参数只表示一个参数类型，但是如果有多个参数的话，就不要使用该参数了。一个参数的这种其实没有必要写parameterType，
+        而且还有就是多个参数的时候也没有必要写parameterType，也就是说，其实该参数的存在是不是特别必要的。
+        其中@Param和parameterType 二者存其一即可。看名字就能知道ParameterType是按照类型进行匹配，而@Param是按照名字进行匹配。
+
+        resultMap 返回结果映射 column 数据库字段 property实体类字段
+        JDBCType            JavaType
+        CHAR                String
+        VARCHAR             String
+        LONGVARCHAR         String
+        NUMERIC             java.math.BigDecimal
+        DECIMAL             java.math.BigDecimal
+        BIT                 boolean
+        BOOLEAN             boolean
+        TINYINT             byte
+        SMALLINT            short
+        INTEGER             int
+        BIGINT              long
+        REAL                float
+        FLOAT               double
+        DOUBLE              double
+        BINARY              byte[]
+        VARBINARY           byte[]
+        LONGVARBINARY               byte[]
+        DATE                java.sql.Date
+        TIME                java.sql.Time
+        TIMESTAMP           java.sql.Timestamp
+        CLOB                Clob
+        BLOB                Blob
+        ARRAY               Array
+        DISTINCT            mapping of underlying type
+        STRUCT              Struct
+        REF                 Ref
+        DATALINK            java.net.URL[color=red][/color]
+    -->
+    <resultMap id="BaseResultMap" type="com.atguigu.springcloud.entities.Payment">
+        <id column="id" property="id" jdbcType="BIGINT"/>
+        <id column="serial" property="serial" jdbcType="VARCHAR"/>
+    </resultMap>
+    <select id="getPaymentById" parameterType="Long" resultMap="BaseResultMap">
+        select * from  payment where id=#{id};
+    </select>
+</mapper>
